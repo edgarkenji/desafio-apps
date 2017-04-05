@@ -21,13 +21,7 @@ class GloboAPITests: QuickSpec {
     
     context("gets cover data from API") {
       it("uses sample data") {
-        let endpoint = { (target:GloboAPI) -> Endpoint<GloboAPI> in
-          let url = target.baseURL.appendingPathComponent(target.path).absoluteString
-          return Endpoint<GloboAPI>(url: url, sampleResponseClosure: {.networkResponse(200, target.sampleData)}, method: target.method, parameters: target.parameters)
-        }
-        
-        let provider = RxMoyaProvider(endpointClosure: endpoint, stubClosure: MoyaProvider.immediatelyStub)
-
+        let provider = MockData().provider
         do {
           let response = try provider.request(.cover).toBlocking().single()
           
@@ -52,6 +46,20 @@ class GloboAPITests: QuickSpec {
           try self.parsesAndTestsAPIResponseData(data: data!)
         } catch {
           fail()
+        }
+      }
+      
+      it("requests from service with sample data provider") {
+        let provider = MockData().provider
+        let service = GloboService(provider: provider)
+        do {
+          let contents = try service.contents.toBlocking().single()
+          expect(contents).toNot(beNil())
+          
+          expect(contents!.articles.count).to(equal(14))
+          
+        } catch let e {
+          fail(e.localizedDescription)
         }
       }
     }

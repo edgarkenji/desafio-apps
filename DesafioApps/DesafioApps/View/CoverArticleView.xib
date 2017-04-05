@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CoverArticleView" customModule="DesafioApps" customModuleProvider="target">
+            <connections>
+                <outlet property="imageView" destination="bil-eT-say" id="i3w-GJ-3qO"/>
+                <outlet property="sectionLabel" destination="OkI-Ig-6OJ" id="2Ze-U6-DB3"/>
+                <outlet property="titleLabel" destination="r8E-gb-Dnf" id="PYO-mz-s1d"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="234"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bil-eT-say">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="234"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r8E-gb-Dnf">
+                    <rect key="frame" x="16" y="201" width="343" height="25"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                    <color key="shadowColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <size key="shadowOffset" width="0.0" height="1"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OkI-Ig-6OJ" customClass="InsetLabel" customModule="DesafioApps" customModuleProvider="target">
+                    <rect key="frame" x="165.5" y="173.5" width="44" height="19.5"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.8522179110738255" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="16"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="topInset">
+                            <real key="value" value="4"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="bottomInset">
+                            <real key="value" value="4"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="leftInset">
+                            <real key="value" value="8"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="rightInset">
+                            <real key="value" value="8"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="bil-eT-say" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="3eM-0M-Bfv"/>
+                <constraint firstAttribute="bottom" secondItem="bil-eT-say" secondAttribute="bottom" id="4Qg-0E-aSy"/>
+                <constraint firstItem="bil-eT-say" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="6Dv-8n-cZm"/>
+                <constraint firstItem="OkI-Ig-6OJ" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="CqF-D0-81P"/>
+                <constraint firstItem="r8E-gb-Dnf" firstAttribute="top" secondItem="OkI-Ig-6OJ" secondAttribute="bottom" constant="8" id="D2Z-IQ-JfO"/>
+                <constraint firstAttribute="bottom" secondItem="r8E-gb-Dnf" secondAttribute="bottom" constant="8" id="JuD-cK-DR1"/>
+                <constraint firstItem="r8E-gb-Dnf" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="eOo-ZA-cSe"/>
+                <constraint firstItem="OkI-Ig-6OJ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="fgn-nc-fIO"/>
+                <constraint firstAttribute="trailing" secondItem="bil-eT-say" secondAttribute="trailing" id="npP-lk-deB"/>
+                <constraint firstAttribute="trailing" secondItem="r8E-gb-Dnf" secondAttribute="trailing" constant="16" id="uct-Vx-5eV"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="OkI-Ig-6OJ" secondAttribute="trailing" constant="16" id="wSa-er-ZBp"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="34.5" y="-161"/>
+        </view>
+    </objects>
+</document>

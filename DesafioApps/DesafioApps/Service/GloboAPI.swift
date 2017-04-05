@@ -40,10 +40,13 @@ extension GloboAPI: TargetType {
       return URLEncoding.default // Send parameters in URL
     }
   }
+  
   var sampleData: Data {
     switch self {
     case .cover:
-      return "[ { \"conteudos\": [ { \"id\": 21030945 } ], \"produto\": \"OGlobo\" } ]".data(using: .utf8)!
+      let path = Bundle(for: type(of:GloboService())).path(forResource: "capa", ofType: "json")
+      let url = URL(fileURLWithPath: path!)
+      return try! Data(contentsOf: url)
     }
   }
   var task: Task {

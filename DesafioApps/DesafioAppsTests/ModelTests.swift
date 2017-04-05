@@ -20,16 +20,8 @@ class ModelTests: QuickSpec {
 
       var data:Data!
       beforeEach {
-        let path = Bundle(for: type(of: self)).path(forResource: "capa", ofType: "json")
-        expect(path).toNot(beNil())
-
-        do {
-          let url = URL(fileURLWithPath: path!)
-          data = try Data(contentsOf: url)
-          expect(data).toNot(beNil())
-        } catch let e {
-          fail(e.localizedDescription)
-        }
+        data = MockData().data
+        expect(data).toNot(beNil())
       }
       
       it("unboxes contents from mock file") {

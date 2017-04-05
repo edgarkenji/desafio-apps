@@ -5,6 +5,7 @@ platform :ios, '9.3'
 target 'DesafioApps' do
     pod 'RxSwift', '~> 3.3.1'
     pod 'RxCocoa', '~> 3.3.1'
+    pod 'RxDataSources', '~> 1.0'
     pod 'Alamofire', '~> 4.4'
     pod 'NibDesignable'
     pod 'Unbox'
@@ -15,6 +16,7 @@ end
 target 'DesafioAppsTests' do
     pod 'RxBlocking', '~> 3.3.1'
     pod 'RxTest', '~> 3.3.1'
+    pod 'RxCocoa', '~> 3.3.1'
     pod 'Moya/RxSwift'
     pod 'Quick'
     pod 'Nimble'
@@ -24,6 +26,7 @@ end
 target 'DesafioAppsUITests' do
     pod 'RxBlocking', '~> 3.3.1'
     pod 'RxTest', '~> 3.3.1'
+    pod 'RxCocoa', '~> 3.3.1'
     pod 'Moya/RxSwift'
     pod 'Quick'
     pod 'Nimble'

@@ -15,6 +15,9 @@ PODS:
     - RxSwift (~> 3.3)
   - RxCocoa (3.3.1):
     - RxSwift (~> 3.3)
+  - RxDataSources (1.0.3):
+    - RxCocoa (~> 3.0)
+    - RxSwift (~> 3.0)
   - RxSwift (3.3.1)
   - RxTest (3.3.1):
     - RxSwift (~> 3.3)
@@ -29,6 +32,7 @@ DEPENDENCIES:
   - Quick
   - RxBlocking (~> 3.3.1)
   - RxCocoa (~> 3.3.1)
+  - RxDataSources (~> 1.0)
   - RxSwift (~> 3.3.1)
   - RxTest (~> 3.3.1)
   - Unbox
@@ -43,10 +47,11 @@ SPEC CHECKSUMS:
   Result: 2453a22e5c5b11c0c3a478736e82cd02f763b781
   RxBlocking: c5918ecb86b8c205a8ccc6d1ff2abb338ddc50a0
   RxCocoa: 7dcb7a1860fc9cd0e23dae67ab105fc2916670b6
+  RxDataSources: a021a0e944ba5f7991259829d973afdbfa719c0b
   RxSwift: 8fc9f2de6275a9101d518444e00bf32f1a42caac
   RxTest: f4e7360033fafa743f2f85097efa958402ed442a
   Unbox: c8b2ab69d3337597b4a3f47a0538807dc12db670
 
-PODFILE CHECKSUM: 688eaa46a98434f1187acc75337fe5cdcf1b78ec
+PODFILE CHECKSUM: a489ff1760fd45df5fe7517cd0673c8853d49838
 
 COCOAPODS: 1.2.0
