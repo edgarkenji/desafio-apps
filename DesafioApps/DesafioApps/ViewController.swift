@@ -9,11 +9,31 @@
 import UIKit
 import Kingfisher
 import RxSwift
+import RxCocoa
 import RxDataSources
 
 class ViewController: UIViewController {
   @IBOutlet weak var tableView: UITableView!
   @IBOutlet weak var coverArticleView: CoverArticleView!
+  
+  enum Section: Int {
+    case cover
+    case articles
+  }
+  
+  struct ArticleSection: SectionModelType {
+    typealias Item = Article
+    var items:[Item]
+    
+    init(items:[ArticleSection.Item]) {
+      self.items = items
+    }
+    
+    init(original: ArticleSection, items: [ArticleSection.Item]) {
+      self = original
+      self.items = items
+    }
+  }
   
   var homeViewModel:HomeViewModel!
   
@@ -30,18 +50,31 @@ class ViewController: UIViewController {
     tableView.rowHeight = UITableViewAutomaticDimension
     tableView.estimatedRowHeight = 94
     
-    homeViewModel.cover
-      .observeOn(MainScheduler.instance)
-      .subscribeOn(SerialDispatchQueueScheduler(internalSerialQueueName: "background"))
-      .subscribe(onNext: { [unowned self] article in
-        self.updateCover(cover: article)
-      })
+    navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+    
+    let dataSource = RxTableViewSectionedReloadDataSource<ArticleSection>()
+    dataSource.configureCell = { (dataSource, tableView, indexPath, item) in
+      if indexPath.section == Section.cover.rawValue {
+        return self.configureCoverCell(tableView: tableView, indexPath: indexPath, article: item)
+      } else {
+        return self.configureArticleCell(tableView: tableView, indexPath: indexPath, article: item)
+      }
+    }
+    
+    Observable.combineLatest(homeViewModel.cover, homeViewModel.articles) { (cover, articles) -> [ArticleSection] in
+      return [
+        ArticleSection(items:[cover]),
+        ArticleSection(items:articles)
+      ]
+      }
+      .bindTo(tableView.rx.items(dataSource: dataSource))
       .addDisposableTo(disposeBag)
     
-    homeViewModel.articles
-      .bindTo(tableView.rx.items(cellIdentifier: "ArticleCell", cellType: ArticleCellTableViewCell.self)) { [unowned self] index, model, cell in
-        self.updateArticle(article: model, view: cell.articleView)
-      }
+    
+    tableView.rx.modelSelected(Article.self).asDriver()
+      .drive(onNext: { (article) in
+        self.performSegue(withIdentifier: "showArticle", sender: article)
+      })
       .addDisposableTo(disposeBag)
   }
 
@@ -50,13 +83,24 @@ class ViewController: UIViewController {
     // Dispose of any resources that can be recreated.
   }
 
+  func configureCoverCell(tableView:UITableView, indexPath:IndexPath, article:Article) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCell(withIdentifier: "CoverArticleCell", for: indexPath) as! CoverArticleTableViewCell
+    self.updateCover(cover: article, view: cell.coverArticleView)
+    return cell
+  }
 
-  func updateCover(cover:Article) {
+  func configureArticleCell(tableView:UITableView, indexPath:IndexPath, article:Article) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCell(withIdentifier: "ArticleCell", for: indexPath) as! ArticleTableViewCell
+    self.updateArticle(article: article, view: cell.articleView)
+    return cell
+  }
+  
+  func updateCover(cover:Article, view:CoverArticleView) {
     let viewModel = ArticleViewModel(article: cover)
-    coverArticleView.imageView.kf.indicatorType = .activity
-    coverArticleView.imageView.kf.setImage(with: viewModel.imageURL)
-    coverArticleView.sectionLabel.text = viewModel.section
-    coverArticleView.titleLabel.text = viewModel.title
+    view.imageView.kf.indicatorType = .activity
+    view.imageView.kf.setImage(with: viewModel.imageURL)
+    view.sectionLabel.text = viewModel.section
+    view.titleLabel.text = viewModel.title
   }
   
   func updateArticle(article:Article, view:ArticleView) {
@@ -66,6 +110,20 @@ class ViewController: UIViewController {
     }
     view.sectionLabel.text = viewModel.section
     view.titleLabel.text = viewModel.title
+  }
+  
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    guard let identifier = segue.identifier else {
+      return
+    }
+    
+    switch identifier {
+    case "showArticle":
+      if let vc = segue.destination as? ArticleTableViewController, let article = sender as? Article {
+        vc.article = article
+      }
+    default: break
+    }
   }
 }
 

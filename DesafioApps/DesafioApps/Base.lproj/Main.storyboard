@@ -25,17 +25,38 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <view key="tableHeaderView" contentMode="scaleToFill" id="saY-uO-MU2" customClass="CoverArticleView" customModule="DesafioApps" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="234"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </view>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ArticleCell" rowHeight="94" id="7Qc-9h-J5e" customClass="ArticleCellTableViewCell" customModule="DesafioApps" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="CoverArticleCell" rowHeight="234" id="kcg-PI-Cgi" customClass="CoverArticleTableViewCell" customModule="DesafioApps" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="234"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kcg-PI-Cgi" id="3qX-vp-27t">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="233.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uc2-rT-3YB" customClass="CoverArticleView" customModule="DesafioApps" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="233.5"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="234" id="5sY-Bv-Hvi"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="Uc2-rT-3YB" secondAttribute="trailing" id="8mi-jl-Qtp"/>
+                                                <constraint firstAttribute="bottom" secondItem="Uc2-rT-3YB" secondAttribute="bottom" id="YDf-hx-bnC"/>
+                                                <constraint firstItem="Uc2-rT-3YB" firstAttribute="top" secondItem="3qX-vp-27t" secondAttribute="top" id="iA7-OL-ghS"/>
+                                                <constraint firstItem="Uc2-rT-3YB" firstAttribute="leading" secondItem="3qX-vp-27t" secondAttribute="leading" id="okp-Zt-dUH"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="coverArticleView" destination="Uc2-rT-3YB" id="RWD-aS-7Ne"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ArticleCell" rowHeight="94" id="7Qc-9h-J5e" customClass="ArticleTableViewCell" customModule="DesafioApps" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="262" width="375" height="94"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7Qc-9h-J5e" id="reE-nV-KZv">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="94"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="93.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lgr-9m-9S4" customClass="ArticleView" customModule="DesafioApps" customModuleProvider="target">
@@ -67,20 +88,112 @@
                     </view>
                     <navigationItem key="navigationItem" title="O GLOBO" id="hug-5b-xnU"/>
                     <connections>
-                        <outlet property="coverArticleView" destination="saY-uO-MU2" id="eTH-9A-85R"/>
                         <outlet property="tableView" destination="0sH-EV-cX3" id="zNI-OE-Stj"/>
+                        <segue destination="Gd8-k1-RQK" kind="show" identifier="showArticle" id="dkn-hc-P2C"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2018.4000000000001" y="137.18140929535232"/>
         </scene>
+        <!--Article Table View Controller-->
+        <scene sceneID="LFT-5y-bJj">
+            <objects>
+                <tableViewController id="Gd8-k1-RQK" customClass="ArticleTableViewController" customModule="DesafioApps" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="174" sectionHeaderHeight="28" sectionFooterHeight="28" id="b0Z-Wj-MEX">
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ArticleHeaderCell" rowHeight="174" id="q9g-Ly-EUc" customClass="ArticleHeaderTableViewCell" customModule="DesafioApps" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="174"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="q9g-Ly-EUc" id="8NZ-XW-My7">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="173.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KNR-oM-gBl" customClass="ArticleHeaderView" customModule="DesafioApps" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="174"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="KNR-oM-gBl" firstAttribute="top" secondItem="8NZ-XW-My7" secondAttribute="top" id="FrM-Yr-eJq"/>
+                                        <constraint firstAttribute="bottom" secondItem="KNR-oM-gBl" secondAttribute="bottom" id="Msl-vX-0w9"/>
+                                        <constraint firstAttribute="trailing" secondItem="KNR-oM-gBl" secondAttribute="trailing" id="g6X-O5-K1Y"/>
+                                        <constraint firstItem="KNR-oM-gBl" firstAttribute="leading" secondItem="8NZ-XW-My7" secondAttribute="leading" id="iFP-J6-EkV"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="headerView" destination="KNR-oM-gBl" id="xXX-t7-Hmy"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ArticleImageCell" id="Lbu-EH-SwD" customClass="ArticleImageTableViewCell" customModule="DesafioApps" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="202" width="375" height="174"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Lbu-EH-SwD" id="awT-Wi-j6F">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="173.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zur-Gs-ZGE" customClass="ArticleImageView" customModule="DesafioApps" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="174"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="Zur-Gs-ZGE" secondAttribute="bottom" id="cYT-t2-gZb"/>
+                                        <constraint firstItem="Zur-Gs-ZGE" firstAttribute="top" secondItem="awT-Wi-j6F" secondAttribute="top" id="eJZ-2M-ER0"/>
+                                        <constraint firstAttribute="trailing" secondItem="Zur-Gs-ZGE" secondAttribute="trailing" id="u9c-XN-0gq"/>
+                                        <constraint firstItem="Zur-Gs-ZGE" firstAttribute="leading" secondItem="awT-Wi-j6F" secondAttribute="leading" id="xkU-yq-xUM"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="articleImageView" destination="Zur-Gs-ZGE" id="F1V-dg-C3Z"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ArticleTextCell" id="95N-aA-aks" customClass="ArticleTextTableViewCell" customModule="DesafioApps" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="376" width="375" height="174"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="95N-aA-aks" id="zya-AZ-Bf4">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="173.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="r0j-oR-D5c">
+                                            <rect key="frame" x="8" y="0.0" width="359" height="174"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        </textView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="r0j-oR-D5c" secondAttribute="trailing" constant="8" id="3JX-Yr-M8B"/>
+                                        <constraint firstAttribute="bottom" secondItem="r0j-oR-D5c" secondAttribute="bottom" id="O68-f6-cjf"/>
+                                        <constraint firstItem="r0j-oR-D5c" firstAttribute="leading" secondItem="zya-AZ-Bf4" secondAttribute="leading" constant="8" id="rFC-9i-Q7g"/>
+                                        <constraint firstItem="r0j-oR-D5c" firstAttribute="top" secondItem="zya-AZ-Bf4" secondAttribute="top" id="wnO-pa-zLC"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="textView" destination="r0j-oR-D5c" id="Igy-oj-rLY"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Gd8-k1-RQK" id="4gz-TZ-rXI"/>
+                            <outlet property="delegate" destination="Gd8-k1-RQK" id="izh-5f-1Rc"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qNj-L7-mwS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2853.5999999999999" y="136.28185907046478"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="gH3-JL-oeF">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="VSG-QH-IKC" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="Q7c-Fi-U5Y">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="Q7c-Fi-U5Y">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

@@ -9,6 +9,7 @@
 import UIKit
 import NibDesignable
 
+@IBDesignable
 class ArticleView: NibDesignable {
 
   @IBOutlet weak var imageView: UIImageView!

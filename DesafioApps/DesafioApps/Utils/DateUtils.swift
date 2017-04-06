@@ -14,4 +14,15 @@ class DateUtils {
     formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
     return formatter
   }()
+  
+  static let ReadableFormatter:DateFormatter = {
+    let formatter = DateFormatter()
+    formatter.dateStyle = .short
+    formatter.timeStyle = .short
+    return formatter
+  }()
+  
+  static func readableDate(date:Date) -> String {
+    return ReadableFormatter.string(from: date)
+  }
 }

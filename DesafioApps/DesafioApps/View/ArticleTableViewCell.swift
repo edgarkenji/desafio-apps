@@ -1,5 +1,5 @@
 //
-//  ArticleCellTableViewCell.swift
+//  ArticleTableViewCell.swift
 //  DesafioApps
 //
 //  Created by Edgar Kenji Yamamoto on 05/04/17.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ArticleCellTableViewCell: UITableViewCell {
+class ArticleTableViewCell: UITableViewCell {
   
   @IBOutlet weak var articleView: ArticleView!
   
