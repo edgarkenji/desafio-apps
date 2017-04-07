@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoadingView" customModule="DesafioApps" customModuleProvider="target">
+            <connections>
+                <outlet property="loadingView" destination="SXB-oJ-Kqu" id="jQQ-Pd-Vbj"/>
+                <outlet property="messageLabel" destination="D3c-Ki-e6y" id="j2M-VX-o4L"/>
+                <outlet property="reloadButton" destination="tuz-vS-ZID" id="gEm-9o-iZi"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="8r7-Ve-dLL">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="SXB-oJ-Kqu">
+                    <rect key="frame" x="177" y="323" width="20" height="20"/>
+                </activityIndicatorView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tuz-vS-ZID">
+                    <rect key="frame" x="171.5" y="323" width="32" height="32"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="32" id="YkB-cb-PvV"/>
+                        <constraint firstAttribute="width" constant="32" id="ksb-Kv-TFG"/>
+                    </constraints>
+                    <state key="normal" image="Refresh"/>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D3c-Ki-e6y">
+                    <rect key="frame" x="16" y="294.5" width="343" height="20.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="SXB-oJ-Kqu" firstAttribute="centerX" secondItem="8r7-Ve-dLL" secondAttribute="centerX" id="6fE-Cw-ubz"/>
+                <constraint firstItem="SXB-oJ-Kqu" firstAttribute="centerY" secondItem="8r7-Ve-dLL" secondAttribute="centerY" id="EnZ-gV-x4g"/>
+                <constraint firstItem="tuz-vS-ZID" firstAttribute="centerX" secondItem="SXB-oJ-Kqu" secondAttribute="centerX" id="ced-2D-BOM"/>
+                <constraint firstItem="tuz-vS-ZID" firstAttribute="top" secondItem="D3c-Ki-e6y" secondAttribute="bottom" constant="8" id="kMW-io-lcX"/>
+                <constraint firstAttribute="trailing" secondItem="D3c-Ki-e6y" secondAttribute="trailing" constant="16" id="oUe-9x-3Sb"/>
+                <constraint firstItem="SXB-oJ-Kqu" firstAttribute="top" secondItem="D3c-Ki-e6y" secondAttribute="bottom" constant="8" id="tId-6T-kmW"/>
+                <constraint firstItem="D3c-Ki-e6y" firstAttribute="leading" secondItem="8r7-Ve-dLL" secondAttribute="leading" constant="16" id="tcR-gr-IMD"/>
+                <constraint firstItem="D3c-Ki-e6y" firstAttribute="top" relation="greaterThanOrEqual" secondItem="8r7-Ve-dLL" secondAttribute="top" constant="8" id="xSh-aC-zDM"/>
+            </constraints>
+            <point key="canvasLocation" x="34.5" y="53.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="Refresh" width="25" height="25"/>
+    </resources>
+</document>

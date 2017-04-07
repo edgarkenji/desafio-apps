@@ -30,7 +30,7 @@ class ViewModelTests: QuickSpec {
           expect(article.id).to(equal(21030945))
           
           let viewModel = ArticleViewModel(article: article)
-          expect(viewModel.section).to(match("Brasil"))
+          expect(viewModel.section).to(match("Brasil".localizedUppercase))
           expect(viewModel.title).to(match("Sérgio Cabral é denunciado pela sexta vez na Lava-Jato"))
           expect(viewModel.imageURL?.absoluteString).to(match("https://ogimg.infoglobo.com.br/in/20620804-669-05e/FT1086A/cabral-preso.jpg"))
           
@@ -71,6 +71,53 @@ class ViewModelTests: QuickSpec {
         } catch let e {
           fail(e.localizedDescription)
         }
+      }
+    }
+    
+    describe("loading view model") {
+      var viewModel:LoadingViewModel!
+      beforeEach {
+        viewModel = LoadingViewModel()
+      }
+      
+      it("shows loading message") {
+        viewModel.setState(.loading)
+        
+        expect(viewModel.state.value).to(equal(LoadingState.loading))
+        expect(viewModel.message).to(match("Carregando, aguarde..."))
+        expect(viewModel.isLoading).to(beTrue())
+        expect(viewModel.isHidden).to(beFalse())
+        expect(viewModel.showRefreshing).to(beFalse())
+      }
+      
+      it("shows empty message") {
+        viewModel.setState(.empty)
+        
+        expect(viewModel.state.value).to(equal(LoadingState.empty))
+        expect(viewModel.message).to(match("Nenhum resultado encontrado"))
+        expect(viewModel.isLoading).to(beFalse())
+        expect(viewModel.isHidden).to(beFalse())
+        expect(viewModel.showRefreshing).to(beTrue())
+      }
+      
+      it("shows error message") {
+        viewModel.setState(.error)
+        
+        expect(viewModel.state.value).to(equal(LoadingState.error))
+        expect(viewModel.message).to(match("Ocorreu um erro, por favor tente novamente mais tarde"))
+        expect(viewModel.isLoading).to(beFalse())
+        expect(viewModel.isHidden).to(beFalse())
+        expect(viewModel.showRefreshing).to(beTrue())
+      }
+      
+      it("shows no message") {
+        viewModel.setState(.loaded)
+        
+        expect(viewModel.state.value).to(equal(LoadingState.loaded))
+        expect(viewModel.message).to(beEmpty())
+        expect(viewModel.isLoading).to(beFalse())
+        expect(viewModel.isHidden).to(beTrue())
+        expect(viewModel.showRefreshing).to(beFalse())
       }
     }
   }

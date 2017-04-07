@@ -14,7 +14,7 @@ import RxDataSources
 
 class ViewController: UIViewController {
   @IBOutlet weak var tableView: UITableView!
-  @IBOutlet weak var coverArticleView: CoverArticleView!
+  @IBOutlet weak var loadingView: LoadingView!
   
   enum Section: Int {
     case cover
@@ -36,8 +36,11 @@ class ViewController: UIViewController {
   }
   
   var homeViewModel:HomeViewModel!
+  var loadingViewModel:LoadingViewModel!
   
   let disposeBag = DisposeBag()
+  
+  var dataSource:RxTableViewSectionedReloadDataSource<ArticleSection>!
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -46,13 +49,23 @@ class ViewController: UIViewController {
     if homeViewModel == nil {
       homeViewModel = HomeViewModel()
     }
+    if loadingViewModel == nil {
+      loadingViewModel = LoadingViewModel()
+    }
     
     tableView.rowHeight = UITableViewAutomaticDimension
     tableView.estimatedRowHeight = 94
     
     navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     
-    let dataSource = RxTableViewSectionedReloadDataSource<ArticleSection>()
+    loadingViewModel.state
+      .asDriver()
+      .drive(onNext: { (loadingState) in
+        self.updateLoading(loadingState: loadingState)
+      })
+      .addDisposableTo(disposeBag)
+
+    dataSource = RxTableViewSectionedReloadDataSource<ArticleSection>()
     dataSource.configureCell = { (dataSource, tableView, indexPath, item) in
       if indexPath.section == Section.cover.rawValue {
         return self.configureCoverCell(tableView: tableView, indexPath: indexPath, article: item)
@@ -61,15 +74,13 @@ class ViewController: UIViewController {
       }
     }
     
-    Observable.combineLatest(homeViewModel.cover, homeViewModel.articles) { (cover, articles) -> [ArticleSection] in
-      return [
-        ArticleSection(items:[cover]),
-        ArticleSection(items:articles)
-      ]
-      }
-      .bindTo(tableView.rx.items(dataSource: dataSource))
+    self.loadingView.reloadButtonTapped
+      .drive(onNext: { _ in
+        self.requestArticles()
+      })
       .addDisposableTo(disposeBag)
     
+    self.requestArticles()
     
     tableView.rx.modelSelected(Article.self).asDriver()
       .drive(onNext: { (article) in
@@ -81,6 +92,26 @@ class ViewController: UIViewController {
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
     // Dispose of any resources that can be recreated.
+  }
+  
+  func requestArticles() {
+    Observable.combineLatest(homeViewModel.cover, homeViewModel.articles) { (cover, articles) -> [ArticleSection] in
+      return [
+        ArticleSection(items:[cover]),
+        ArticleSection(items:articles)
+      ]
+      }
+      .do(onNext: { sections in
+        if sections[Section.cover.rawValue].items.isEmpty && sections[Section.articles.rawValue].items.isEmpty {
+          self.loadingViewModel.setState(.empty)
+        } else {
+          self.loadingViewModel.setState(.loaded)
+        }
+      }, onError: { _ in
+        self.loadingViewModel.setState(.error)
+      })
+      .bindTo(tableView.rx.items(dataSource: dataSource))
+      .addDisposableTo(disposeBag)
   }
 
   func configureCoverCell(tableView:UITableView, indexPath:IndexPath, article:Article) -> UITableViewCell {
@@ -110,6 +141,13 @@ class ViewController: UIViewController {
     }
     view.sectionLabel.text = viewModel.section
     view.titleLabel.text = viewModel.title
+  }
+  
+  func updateLoading(loadingState:LoadingState) {
+    loadingView.updateUI(isHidden: loadingViewModel.isHidden,
+                         showLoading: loadingViewModel.isLoading,
+                         showRefreshing: loadingViewModel.showRefreshing,
+                         message: loadingViewModel.message)
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

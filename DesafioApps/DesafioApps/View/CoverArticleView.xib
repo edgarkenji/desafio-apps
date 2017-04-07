@@ -24,16 +24,28 @@
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bil-eT-say">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="234"/>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r8E-gb-Dnf">
-                    <rect key="frame" x="16" y="201" width="343" height="25"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <nil key="highlightedColor"/>
-                    <color key="shadowColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                    <size key="shadowOffset" width="0.0" height="1"/>
-                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JIg-A5-8Dj">
+                    <rect key="frame" x="8" y="193" width="359" height="33"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r8E-gb-Dnf">
+                            <rect key="frame" x="8" y="4" width="343" height="25"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                            <color key="shadowColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <size key="shadowOffset" width="0.0" height="1"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="r8E-gb-Dnf" firstAttribute="top" secondItem="JIg-A5-8Dj" secondAttribute="top" constant="4" id="FDu-f3-sCw"/>
+                        <constraint firstItem="r8E-gb-Dnf" firstAttribute="leading" secondItem="JIg-A5-8Dj" secondAttribute="leading" constant="8" id="Yaj-PB-wZe"/>
+                        <constraint firstAttribute="trailing" secondItem="r8E-gb-Dnf" secondAttribute="trailing" constant="8" id="iaD-vL-cEl"/>
+                        <constraint firstAttribute="bottom" secondItem="r8E-gb-Dnf" secondAttribute="bottom" constant="4" id="kUa-Qh-44U"/>
+                    </constraints>
+                </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OkI-Ig-6OJ" customClass="InsetLabel" customModule="DesafioApps" customModuleProvider="target">
-                    <rect key="frame" x="165.5" y="173.5" width="44" height="19.5"/>
+                    <rect key="frame" x="165" y="165" width="44" height="19.5"/>
                     <color key="backgroundColor" white="0.0" alpha="0.8522179110738255" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="16"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -56,16 +68,16 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstAttribute="bottom" secondItem="JIg-A5-8Dj" secondAttribute="bottom" constant="8" id="2VX-qX-UXc"/>
                 <constraint firstItem="bil-eT-say" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="3eM-0M-Bfv"/>
                 <constraint firstAttribute="bottom" secondItem="bil-eT-say" secondAttribute="bottom" id="4Qg-0E-aSy"/>
                 <constraint firstItem="bil-eT-say" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="6Dv-8n-cZm"/>
                 <constraint firstItem="OkI-Ig-6OJ" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="CqF-D0-81P"/>
-                <constraint firstItem="r8E-gb-Dnf" firstAttribute="top" secondItem="OkI-Ig-6OJ" secondAttribute="bottom" constant="8" id="D2Z-IQ-JfO"/>
-                <constraint firstAttribute="bottom" secondItem="r8E-gb-Dnf" secondAttribute="bottom" constant="8" id="JuD-cK-DR1"/>
-                <constraint firstItem="r8E-gb-Dnf" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="eOo-ZA-cSe"/>
+                <constraint firstItem="JIg-A5-8Dj" firstAttribute="top" secondItem="OkI-Ig-6OJ" secondAttribute="bottom" constant="8" id="Nrs-PZ-Stg"/>
+                <constraint firstAttribute="trailing" secondItem="JIg-A5-8Dj" secondAttribute="trailing" constant="8" id="RIr-bf-ylh"/>
                 <constraint firstItem="OkI-Ig-6OJ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="fgn-nc-fIO"/>
+                <constraint firstItem="JIg-A5-8Dj" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="mDD-qU-yWC"/>
                 <constraint firstAttribute="trailing" secondItem="bil-eT-say" secondAttribute="trailing" id="npP-lk-deB"/>
-                <constraint firstAttribute="trailing" secondItem="r8E-gb-Dnf" secondAttribute="trailing" constant="16" id="uct-Vx-5eV"/>
                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="OkI-Ig-6OJ" secondAttribute="trailing" constant="16" id="wSa-er-ZBp"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
